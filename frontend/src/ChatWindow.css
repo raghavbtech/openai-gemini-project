@@ -1,0 +1,336 @@
+/* Updated entire color scheme from orange to blue-purple */
+.chatWindow {
+  background: #0d1117;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  /* Add perspective for 3D depth */
+  perspective: 1200px;
+}
+
+.chatWindow::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 100%;
+  height: 100%;
+  /* Removed radial gradient effect - too playful */
+  background: transparent;
+  pointer-events: none;
+}
+
+.navbar {
+  width: 100%;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #010409;
+  backdrop-filter: none;
+  border-bottom: 1px solid #21262d;
+  z-index: 100;
+  box-shadow: none;
+}
+
+.modelSelector {
+  position: relative;
+}
+
+.modelButton {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 1.1rem;
+  /* Solid color instead of gradient */
+  background: #6c5ce7;
+  border: none;
+  border-radius: 8px;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  font-size: 0.95rem;
+  font-weight: 500;
+  box-shadow: none;
+}
+
+.modelButton:hover {
+  background: #7c6ef7;
+  /* Removed transform */
+  /* Add 3D lift and subtle glow */
+  transform: translateY(-3px) translateZ(0);
+  box-shadow: 0 12px 32px rgba(108, 92, 231, 0.3);
+}
+
+.modelIcon {
+  font-size: 1.2rem;
+}
+
+.modelName {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.chevronIcon {
+  font-size: 0.75rem;
+  opacity: 0.8;
+  transition: transform 0.3s ease;
+}
+
+.modelDropdown {
+  position: absolute;
+  top: calc(100% + 0.75rem);
+  left: 0;
+  min-width: 200px;
+  background: rgba(15, 23, 41, 0.95);
+  backdrop-filter: blur(20px);
+  border: 2px solid rgba(108, 92, 231, 0.2);
+  border-radius: 16px;
+  padding: 0.5rem;
+  box-shadow: 0 10px 40px rgba(108, 92, 231, 0.15);
+  animation: slideDown 0.2s ease;
+  z-index: 1000;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modelOption {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #b0b8d0;
+  font-size: 0.95rem;
+}
+
+.modelOption:hover {
+  background: rgba(108, 92, 231, 0.15);
+  color: #ffffff;
+  /* 3D card tilt effect */
+  transform: translateX(4px) translateY(-1px) perspective(800px) rotateY(2deg);
+  box-shadow: 0 4px 16px rgba(108, 92, 231, 0.2);
+}
+
+.modelOptionIcon {
+  font-size: 1.2rem;
+}
+
+.profileSection {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4rem;
+}
+
+.userAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #6c5ce7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 1rem;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  border: none;
+  flex-shrink: 0;
+  box-shadow: none;
+}
+
+.userAvatar:hover {
+  background: #7c6ef7;
+  /* Removed scale transform */
+  /* Gentle 3D rotation on hover */
+  transform: scale(1.08) rotateZ(5deg);
+  box-shadow: 0 8px 24px rgba(108, 92, 231, 0.25);
+}
+
+.profileDropdown {
+  position: absolute;
+  top: 5rem;
+  right: 2rem;
+  min-width: 220px;
+  background: rgba(15, 23, 41, 0.95);
+  backdrop-filter: blur(20px);
+  border: 2px solid rgba(108, 92, 231, 0.2);
+  border-radius: 16px;
+  padding: 0.5rem;
+  box-shadow: 0 10px 40px rgba(108, 92, 231, 0.15);
+  z-index: 1000;
+  animation: slideDown 0.2s ease;
+}
+
+.profileArrow {
+  position: absolute;
+  top: -8px;
+  right: 20px;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid rgba(15, 23, 41, 0.95);
+}
+
+.profileOption {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.875rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #b0b8d0;
+  font-size: 0.95rem;
+}
+
+.profileOption:hover {
+  background: rgba(108, 92, 231, 0.15);
+  color: #ffffff;
+  transform: translateX(4px);
+}
+
+.profileOption i {
+  width: 20px;
+  font-size: 1rem;
+  opacity: 0.8;
+}
+
+.profileDivider {
+  height: 1px;
+  background: rgba(108, 92, 231, 0.12);
+  margin: 0.5rem 0;
+}
+
+.logoutOption:hover {
+  background: rgba(220, 53, 69, 0.12);
+  color: #ff6b7a;
+}
+
+.loadingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.chatInputContainer {
+  width: 100%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(10, 14, 39, 0.4);
+  backdrop-filter: blur(10px);
+  border-top: 2px solid rgba(108, 92, 231, 0.12);
+  z-index: 10;
+}
+
+.inputWrapper {
+  width: 100%;
+  max-width: 900px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.chatInputField {
+  flex: 1;
+  padding: 1rem 1.25rem;
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  color: #c9d1d9;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  backdrop-filter: none;
+  box-shadow: none;
+}
+
+.chatInputField::placeholder {
+  color: #6e7681;
+}
+
+.chatInputField:focus {
+  outline: none;
+  background: #161b22;
+  border-color: #6c5ce7;
+  box-shadow: 0 0 0 2px rgba(108, 92, 231, 0.1);
+}
+
+.sendButton {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #6c5ce7;
+  border: none;
+  color: #ffffff;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: none;
+}
+
+.sendButton:hover {
+  background: #7c6ef7;
+  /* Removed playful rotation and scale */
+  /* 3D button lift with glow effect */
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 12px 32px rgba(108, 92, 231, 0.3);
+}
+
+.sendButton:active {
+  background: #5f4fcc;
+  /* 3D press-down effect */
+  transform: translateY(0) scale(0.98);
+  box-shadow: 0 4px 12px rgba(108, 92, 231, 0.2);
+}
+
+.infoText {
+  font-size: 0.85rem;
+  color: rgba(176, 184, 208, 0.45);
+  text-align: center;
+  margin: 0;
+  letter-spacing: 0.3px;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 1rem 1.5rem;
+  }
+
+  .chatInputContainer {
+    padding: 1.5rem;
+  }
+
+  .inputWrapper {
+    max-width: 100%;
+  }
+
+  .modelButton {
+    padding: 0.625rem 1rem;
+    font-size: 0.875rem;
+  }
+}

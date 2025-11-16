@@ -1,0 +1,25 @@
+import { Strategy as JwtStrategy,ExtractJwt } from "passport-jwt";
+import User from "../models/user.js";
+
+
+const options={
+jwtFromRequest:ExtractJwt.fromAuthHeaderAsBearerToken(),
+secretOrKey:"mysecretkey"
+};
+export default (passport)=>{
+    passport.use(
+        new JwtStrategy(options,async(jwt_payload,done)=>{
+            try {
+                const user=await User.findById(jwt_payload.id);
+                if(user){
+                    return done(null,user);
+                }
+                else{
+                    return done(null,false);
+                }
+            } catch (error) {
+                return done(error,false);
+            }
+        })
+    )
+}
