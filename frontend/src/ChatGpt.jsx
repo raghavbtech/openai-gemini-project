@@ -12,7 +12,7 @@ function ChatGpt() {
   const [reply,setReply]=useState(null);
   const [currThreadId,setCurrThreadId]=useState("");
   const [prevChats,setPrevChats]=useState([]);
-  const [provider,setProvider]=useState("OpenAI");
+  const [provider,setProvider]=useState("Gemini");
   const providerValues = {
     allThreads,setAllThreads,
     newChat,setNewChat,
