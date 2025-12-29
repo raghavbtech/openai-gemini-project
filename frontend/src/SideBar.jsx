@@ -81,7 +81,7 @@ function SideBar() {
         <section className="sidebar">
             <button onClick={createNewChat}>
                 <img
-                    src={provider === "OpenAI" ? "src/assets/chatgpt.png" : "src/assets/gemini.jpg"}
+                    src={provider === "OpenAI" ? "/images/chatgpt.png" : "/images/gemini.jpg"}
                     alt="AI logo"
                     className="logo"
                 />
