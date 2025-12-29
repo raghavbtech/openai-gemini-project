@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import "./Sidebar.css";
+import "./SideBar.css";
 import { MyContext } from "./MyContext";
 import { v1 as uuidv1 } from "uuid";
 import api from "./api/axios";
