@@ -68,7 +68,7 @@ function Register() {
               required
             />
           </div>
-
+          <Link to="/login" style={{textDecoration:"none"}}>Click here to Login</Link>
           <button type="submit" className="submitButton" disabled={loading}>
             {loading ? "Creating..." : "Register"}
           </button>
