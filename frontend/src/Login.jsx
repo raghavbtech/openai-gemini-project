@@ -61,10 +61,10 @@ function Login() {
           <button type="submit" className="submitButton" disabled={loading}>
             {loading ? "Logging in..." : "Login"}
           </button>
+        <Link to="/register">Click here to register</Link>
         </form>
 
         {error && <div className="errorMessage">{error}</div>}
-        <Link to="/register">Click here to register</Link>
       </div>
     </div>
   )
