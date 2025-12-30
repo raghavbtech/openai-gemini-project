@@ -2,6 +2,7 @@
 import { useState } from "react"
 import { loginUser } from "./api/auth"
 import { useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 import "./Login.css"
 
 function Login() {
@@ -63,6 +64,7 @@ function Login() {
         </form>
 
         {error && <div className="errorMessage">{error}</div>}
+        <Link to="/register">Click here to register</Link>
       </div>
     </div>
   )
