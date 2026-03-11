@@ -2,16 +2,13 @@ import express from 'express';
 import 'dotenv/config';
 import cors from 'cors';
 import mongoose from 'mongoose';
-import OpenAI from "openai";
 import chatRoutes from "./routes/route.js";
 import authRoutes from "./routes/authRoutes.js";
 import passportconfig from "./config/passport.js"
 import passport from 'passport';
 
 
-const openAi=new OpenAI();
 const app=express();
-const PORT=8080;
 
 
 app.use(express.json());
