@@ -28,20 +28,18 @@ app.use("/api/auth",authRoutes);
 app.use("/api",passport.authenticate('jwt',{session:false}),chatRoutes);
 
 
-app.listen(PORT,()=>{
-    console.log(`server running on ${PORT}`);
-    connectDB();
-})
-
 const connectDB=async()=>{
     try {
         await mongoose.connect(process.env.MONGODB_URI);
         console.log("Connected With Database!");
     } catch (error) {
         console.log("Failed to connect with Db",error);
-        
     }
 };
+
+connectDB();
+
+export default app;
 
 
 

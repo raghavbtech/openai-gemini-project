@@ -15,7 +15,8 @@ function ChatWindow() {
     const navigate = useNavigate();
     const token = localStorage.getItem("token");
 
-    const storedUser = JSON.parse(localStorage.getItem("user") || "{}");
+    const stored = localStorage.getItem("user");
+    const storedUser = JSON.parse((stored && stored !== "undefined") ? stored : "{}");
     const userInitial = storedUser.name ? storedUser.name[0].toUpperCase() : "U";
 
     const getReply = async () => {

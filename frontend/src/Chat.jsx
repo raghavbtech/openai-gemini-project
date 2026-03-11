@@ -9,7 +9,8 @@ function Chat() {
     const { newChat, prevChats, reply, provider } = useContext(MyContext);
     const [latestReply, setLatestReply] = useState(null);
 
-    const storedUser = JSON.parse(localStorage.getItem("user") || "{}");
+    const stored = localStorage.getItem("user");
+    const storedUser = JSON.parse((stored && stored !== "undefined") ? stored : "{}");
     const userInitial = storedUser.name ? storedUser.name[0].toUpperCase() : "U";
     const aiLogo = provider === "OpenAI" ? "/images/chatgpt.png" : "/images/gemini.jpg";
 
