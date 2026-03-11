@@ -23,7 +23,7 @@ function Login() {
       setLoading(false)
       navigate("/")
     } catch (error) {
-      setError(error)
+      setError(error.response?.data?.error || error.message || "Login failed")
       setLoading(false)
     }
   }
