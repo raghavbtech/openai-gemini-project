@@ -15,7 +15,10 @@ const PORT=8080;
 
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: process.env.CLIENT_URL || 'https://openai-gemini-project1.onrender.com',
+    credentials: true,
+}));
 
 
 app.use(passport.initialize());
