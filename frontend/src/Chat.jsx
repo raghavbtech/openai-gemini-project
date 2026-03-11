@@ -12,7 +12,8 @@ function Chat() {
     const stored = localStorage.getItem("user");
     const storedUser = JSON.parse((stored && stored !== "undefined") ? stored : "{}");
     const userInitial = storedUser.name ? storedUser.name[0].toUpperCase() : "U";
-    const aiLogo = provider === "OpenAI" ? "/images/chatgpt.png" : "/images/gemini.jpg";
+    const getLogoForProvider = (p) => p === "OpenAI" ? "/images/chatgpt.png" : "/images/gemini.jpg";
+    const aiLogo = getLogoForProvider(provider);
 
     useEffect(() => {
         if (!reply) {
@@ -57,7 +58,7 @@ function Chat() {
                             )}
                             {chat.role === "assistant" && (
                                 <div className="avatarBox assistantAvatar">
-                                    <img src={aiLogo} alt={provider} className="avatarLogo" />
+                                    <img src={getLogoForProvider(chat.provider || provider)} alt={chat.provider || provider} className="avatarLogo" />
                                 </div>
                             )}
                         </div>
@@ -72,7 +73,7 @@ function Chat() {
                                     <ReactMarkdown rehypePlugins={[rehypeHighlight]}>{prevChats[prevChats.length - 1].content}</ReactMarkdown>
                                 </div>
                                 <div className="avatarBox assistantAvatar">
-                                    <img src={aiLogo} alt={provider} className="avatarLogo" />
+                                    <img src={getLogoForProvider(prevChats[prevChats.length - 1].provider || provider)} alt={provider} className="avatarLogo" />
                                 </div>
                             </div>
                         </div>

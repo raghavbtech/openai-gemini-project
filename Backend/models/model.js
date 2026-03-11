@@ -13,6 +13,10 @@ const MessageSchema=new mongoose.Schema({
         type:String,
         required:true
     },
+    provider:{
+        type:String,
+        default:"Gemini"
+    },
     timestamp:{
         type:Date,
         default:Date.now
