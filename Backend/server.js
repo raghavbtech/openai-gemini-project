@@ -26,6 +26,7 @@ app.use("/api",passport.authenticate('jwt',{session:false}),chatRoutes);
 
 
 const connectDB=async()=>{
+    if(mongoose.connection.readyState>=1) return;
     try {
         await mongoose.connect(process.env.MONGODB_URI);
         console.log("Connected With Database!");
@@ -34,7 +35,10 @@ const connectDB=async()=>{
     }
 };
 
-connectDB();
+app.use(async(req,res,next)=>{
+    await connectDB();
+    next();
+});
 
 export default app;
 
