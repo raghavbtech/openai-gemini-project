@@ -106,7 +106,7 @@ router.post("/threads",async(req,res)=>{
             thread.messages.push({role:"user",content:message});
         }
         const aiResponse=await (provider=="OpenAI"?openai(message):gemini(message));
-        thread.messages.push({role:"assistant",content:aiResponse,provider});
+        thread.messages.push({role:"assistant",content:aiResponse});
         thread.updatedAt=new Date();
         await thread.save();
         res.status(200).json({reply:aiResponse});

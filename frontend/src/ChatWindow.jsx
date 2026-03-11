@@ -33,7 +33,7 @@ function ChatWindow() {
                 setLoading(false);
                 setPrevChats(prev => [...prev,
                     { role: "user", content: prompt },
-                    { role: "assistant", content: "⚠️ OpenAI subscription has expired. Please switch to **Gemini** to continue chatting.", provider: "OpenAI" }
+                    { role: "assistant", content: "⚠️ OpenAI subscription has expired. Please switch to **Gemini** to continue chatting." }
                 ]);
                 setPrompt("");
                 return;
@@ -60,7 +60,7 @@ function ChatWindow() {
             setPrevChats(prevChats => ([
                 ...prevChats,
                 { role: "user", content: prompt },
-                { role: "assistant", content: reply, provider: provider }
+                { role: "assistant", content: reply }
             ]));
         }
         setPrompt("");
