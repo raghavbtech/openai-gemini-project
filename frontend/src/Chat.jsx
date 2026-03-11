@@ -15,7 +15,7 @@ function Chat() {
     const aiLogo = provider === "OpenAI" ? "/images/chatgpt.png" : "/images/gemini.jpg";
 
     useEffect(() => {
-        if (reply === null) {
+        if (!reply) {
             setLatestReply(null);
             return;
         }
