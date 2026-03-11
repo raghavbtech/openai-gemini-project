@@ -3,12 +3,10 @@ import OpenAI from 'openai';
 
 
 
-const openAi=new OpenAI({
-    apiKey:process.env.OPENAI_API_KEY
-});
-
-
 const openai=async(message)=>{
+    const openAi=new OpenAI({
+        apiKey:process.env.OPENAI_API_KEY
+    });
     const completion=await openAi.chat.completions.create({
         messages:[{
             role:"user",
