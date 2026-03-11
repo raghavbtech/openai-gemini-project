@@ -58,7 +58,7 @@ function Login() {
             />
           </div>
 
-        <Link to="/register" style={{textDecoration:"none"}}>Click here to register</Link>
+        <Link to="/register" className="authLink">Don't have an account? Sign up</Link>
           <button type="submit" className="submitButton" disabled={loading}>
             {loading ? "Logging in..." : "Login"}
           </button>

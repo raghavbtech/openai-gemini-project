@@ -1,161 +1,118 @@
-/* Register page styling aligned with app color palette */
 .registerContainer {
   min-height: 100vh;
   width: 100%;
-  background: linear-gradient(180deg, #0a0e27 0%, #0d1117 50%, #0a0e27 100%);
+  background: #0d1117;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 2rem;
-  perspective: 1200px;
 }
 
 .registerCard {
   width: 100%;
-  max-width: 420px;
-  background: rgba(13, 17, 23, 0.6);
-  backdrop-filter: blur(30px);
-  border: 2px solid rgba(124, 58, 237, 0.2);
-  border-radius: 20px;
+  max-width: 400px;
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 12px;
   padding: 2.5rem;
-  box-shadow: 0 20px 60px rgba(124, 58, 237, 0.15), inset 0 0 1px rgba(255, 255, 255, 0.1);
-  animation: cardSlideIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-@keyframes cardSlideIn {
-  from {
-    opacity: 0;
-    transform: translateY(30px) translateZ(-50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) translateZ(0);
-  }
 }
 
 .registerTitle {
-  font-size: 2rem;
+  font-size: 1.6rem;
   font-weight: 600;
-  background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin: 0 0 1.5rem 0;
+  color: #e6edf3;
+  margin: 0 0 1.75rem 0;
   text-align: center;
-  letter-spacing: -0.5px;
 }
 
 .registerForm {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1.1rem;
 }
 
 .formGroup {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 6px;
 }
 
 .formLabel {
-  font-size: 0.95rem;
+  font-size: 13px;
   font-weight: 500;
-  color: #a0aec0;
-  letter-spacing: 0.3px;
+  color: #8b949e;
 }
 
 .formInput {
-  padding: 1rem 1.25rem;
-  background: rgba(22, 27, 34, 0.4);
-  border: 2px solid rgba(124, 58, 237, 0.15);
-  border-radius: 12px;
-  color: #e0e7ff;
-  font-size: 1rem;
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-  backdrop-filter: blur(10px);
-  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px 14px;
+  background: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  color: #e6edf3;
+  font-size: 15px;
+  transition: border-color 0.15s ease;
 }
 
 .formInput::placeholder {
-  color: #64748b;
+  color: #484f58;
 }
 
 .formInput:focus {
   outline: none;
-  background: rgba(22, 27, 34, 0.6);
-  border-color: #7c3aed;
-  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15), inset 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-color: #6c5ce7;
+}
+
+.authLink {
+  font-size: 13px;
+  color: #6c5ce7;
+  text-decoration: none;
+  align-self: flex-start;
+  transition: color 0.15s ease;
+}
+
+.authLink:hover {
+  color: #9d8df1;
 }
 
 .submitButton {
-  padding: 1rem;
-  background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
+  padding: 11px;
+  background: #6c5ce7;
+  border: none;
+  border-radius: 8px;
   color: #ffffff;
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-  box-shadow: 0 8px 24px rgba(124, 58, 237, 0.25);
-  letter-spacing: 0.5px;
+  transition: background 0.15s ease;
+  margin-top: 4px;
 }
 
 .submitButton:hover:not(:disabled) {
-  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
-  transform: translateY(-4px) translateZ(0);
-  box-shadow: 0 14px 40px rgba(124, 58, 237, 0.35);
+  background: #7c6ef7;
 }
 
 .submitButton:active:not(:disabled) {
-  background: linear-gradient(135deg, #6d28d9 0%, #5b21b6 100%);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.2);
+  background: #5f4fcc;
 }
 
 .submitButton:disabled {
-  opacity: 0.6;
+  opacity: 0.55;
   cursor: not-allowed;
 }
 
 .errorMessage {
-  padding: 1rem;
-  background: rgba(239, 68, 68, 0.1);
-  border: 1px solid rgba(239, 68, 68, 0.3);
-  border-radius: 10px;
-  color: #fca5a5;
-  font-size: 0.95rem;
+  padding: 10px 14px;
+  background: rgba(248, 81, 73, 0.08);
+  border: 1px solid rgba(248, 81, 73, 0.25);
+  border-radius: 8px;
+  color: #ffa198;
+  font-size: 13.5px;
   text-align: center;
-  animation: slideDown 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  margin-top: 4px;
 }
 
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-12px) translateZ(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) translateZ(0);
-  }
-}
-
-@media (max-width: 768px) {
+@media (max-width: 480px) {
   .registerCard {
-    padding: 2rem;
-    max-width: 100%;
-  }
-
-  .registerTitle {
-    font-size: 1.75rem;
-  }
-
-  .formInput {
-    padding: 0.875rem 1rem;
-  }
-
-  .submitButton {
-    padding: 0.875rem;
-    font-size: 0.95rem;
+    padding: 2rem 1.5rem;
   }
 }

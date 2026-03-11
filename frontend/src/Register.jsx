@@ -69,7 +69,7 @@ function Register() {
               required
             />
           </div>
-          <Link to="/login" style={{textDecoration:"none"}}>Click here to Login</Link>
+          <Link to="/login" className="authLink">Already have an account? Sign in</Link>
           <button type="submit" className="submitButton" disabled={loading}>
             {loading ? "Creating..." : "Register"}
           </button>

@@ -1,121 +1,75 @@
-/* Modern elegant dark theme with refined styling */
 .sidebar {
   background: #0d1117;
-  color: #ffffff;
+  color: #e6edf3;
   height: 100vh;
-  width: 280px;
+  width: 260px;
   display: flex;
   flex-direction: column;
   border-right: 1px solid #21262d;
-  box-shadow: none;
-  perspective: 1000px; /* Add 3D perspective and subtle depth to sidebar elements */
+  flex-shrink: 0;
 }
 
-.sidebar button {
+.newChatBtn {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 12px 10px;
-  padding: 12px 14px;
+  margin: 12px;
+  padding: 10px 14px;
   border-radius: 8px;
-  /* Subtle violet instead of gradient for mature look */
   background: #6c5ce7;
   border: none;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1); /* Update transition */
   color: #ffffff;
+  font-size: 14px;
   font-weight: 500;
-  box-shadow: none;
+  transition: background 0.15s ease;
 }
 
-.sidebar button:hover {
+.newChatBtn:hover {
   background: #7c6ef7;
-  /* Removed playful transform */
-  box-shadow: 0 8px 24px rgba(108, 92, 231, 0.25); /* Add subtle 3D lift effect on hover */
-  transform: translateY(-2px); /* Add subtle 3D lift effect on hover */
 }
 
-.sidebar button:active {
-  transform: translateY(0);
-}
-
-.logo {
-  height: 24px;
-  width: 24px;
-  background-color: #fff;
-  border-radius: 50%;
-  object-fit: cover;
-  box-shadow: 0 2px 8px rgba(108, 92, 231, 0.2);
-}
-
-.sidebar button span {
-  font-size: 18px;
-  color: #ffffff;
-  transition: transform 0.2s ease;
-}
-
-.sidebar button:hover span {
-  transform: scale(1.1);
+.newChatBtn:active {
+  background: #5f4fcc;
 }
 
 .history {
   flex: 1;
-  margin: 8px 0;
-  padding: 8px;
+  padding: 6px 8px;
   overflow-y: auto;
-  overflow-x: hidden;
   scrollbar-width: thin;
-  scrollbar-color: rgba(108, 92, 231, 0.2) transparent;
+  scrollbar-color: #30363d transparent;
 }
 
 .history::-webkit-scrollbar {
-  width: 6px;
-}
-
-.history::-webkit-scrollbar-track {
-  background: transparent;
+  width: 4px;
 }
 
 .history::-webkit-scrollbar-thumb {
-  background: rgba(108, 92, 231, 0.2);
-  border-radius: 3px;
-  transition: background 0.2s ease;
-}
-
-.history::-webkit-scrollbar-thumb:hover {
-  background: rgba(108, 92, 231, 0.35);
+  background: #30363d;
+  border-radius: 2px;
 }
 
 .history li {
-  list-style-type: none;
+  list-style: none;
   cursor: pointer;
-  padding: 10px 12px;
-  margin: 4px 0;
-  font-size: 14px;
-  position: relative;
+  padding: 9px 10px;
+  margin: 2px 0;
+  font-size: 13.5px;
   border-radius: 6px;
-  /* Smooth transition without scale effects */
-  transition: background 0.2s ease;
   color: #8b949e;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  background: transparent;
-  border: none;
+  transition: background 0.15s ease, color 0.15s ease;
 }
 
 .history li:hover {
-  background: rgba(139, 148, 158, 0.1);
+  background: rgba(139, 148, 158, 0.08);
   color: #c9d1d9;
-  /* Removed transform */
-  transform: translateX(4px) translateZ(0); /* Add gentle 3D depth on hover */
-  box-shadow: inset 0 0 0 1px rgba(108, 92, 231, 0.15); /* Add gentle 3D depth on hover */
 }
 
-.history li .thread-title {
+.thread-title {
   flex: 1;
   min-width: 0;
   overflow: hidden;
@@ -123,70 +77,47 @@
   white-space: nowrap;
 }
 
+.deleteBtn {
+  background: none;
+  border: none;
+  color: #656d76;
+  cursor: pointer;
+  padding: 3px 5px;
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+  flex-shrink: 0;
+  margin-left: 6px;
+  transition: color 0.15s ease, opacity 0.15s ease;
+}
+
+.history li:hover .deleteBtn {
+  opacity: 1;
+}
+
+.deleteBtn:hover {
+  color: #f85149;
+}
+
+.highlighted {
+  background: rgba(108, 92, 231, 0.12);
+  color: #c9d1d9;
+  font-weight: 500;
+}
+
+.highlighted:hover {
+  background: rgba(108, 92, 231, 0.18) !important;
+}
+
 .sign {
-  padding: 16px 12px;
-  margin: 0;
+  padding: 14px 12px;
+  border-top: 1px solid #21262d;
   font-size: 12px;
   text-align: center;
-  border-top: 2px solid rgba(108, 92, 231, 0.15);
-  color: rgba(176, 184, 208, 0.6);
-  letter-spacing: 0.3px;
+  color: #484f58;
 }
 
 .sign p {
   margin: 0;
-  font-weight: 500;
-}
-
-.fa-trash {
-  opacity: 0;
-  color: #888;
-  transition: all 0.2s ease;
-  font-size: 14px;
-  padding: 0 6px 0 10px;
-  flex-shrink: 0;
-  cursor: pointer;
-}
-
-.history li:hover .fa-trash {
-  opacity: 1;
-  color: #6c5ce7;
-}
-
-.fa-trash:hover {
-  color: #7c6ef7 !important;
-  transform: scale(1.15) rotateY(10deg); /* Smooth 3D rotation effect */
-}
-
-.highlighted {
-  background: rgba(108, 92, 231, 0.15);
-  color: #ffffff;
-  font-weight: 500;
-  box-shadow: none;
-}
-
-.highlighted:hover {
-  background: rgba(108, 92, 231, 0.2);
-}
-
-@media (max-width: 1024px) {
-  .sidebar {
-    width: 240px;
-  }
-}
-
-@media (max-width: 768px) {
-  .sidebar {
-    width: 220px;
-  }
-
-  .history li {
-    padding: 10px 12px;
-    font-size: 13px;
-  }
-
-  .sidebar button {
-    margin: 12px 10px;
-    padding: 12px 14px;
-  }
 }
