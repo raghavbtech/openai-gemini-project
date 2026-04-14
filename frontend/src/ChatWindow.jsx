@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 function ChatWindow() {
     const { prompt, setPrompt, reply, setReply, currThreadId, setPrevChats, setNewChat, provider, setProvider } = useContext(MyContext);
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState("");
     const [isOpen, setIsOpen] = useState(false);
     const [isModelOpen, setIsModelOpen] = useState(false);
     const navigate = useNavigate();
@@ -26,31 +27,27 @@ function ChatWindow() {
         }
 
         setLoading(true);
+        setError("");
         setNewChat(false);
         try {
-            if (provider == "OpenAI") {
-                // Subscription expired. To re-enable, remove this block and uncomment the API call below.
+            if (provider === "OpenAI") {
                 setLoading(false);
                 setPrevChats(prev => [...prev,
                     { role: "user", content: prompt },
-                    { role: "assistant", content: "⚠️ OpenAI subscription has expired. Please switch to **Gemini** to continue chatting." }
+                    { role: "assistant", content: "OpenAI subscription has expired. Please switch to Gemini to continue chatting." }
                 ]);
                 setPrompt("");
                 return;
-                // const response = await api.post("/threads", { message: prompt, threadId: currThreadId, provider: provider });
-                // console.log(response.data.reply);
-                // setReply(response.data.reply);
             }
-            else if (provider == "Gemini") {
-                const response = await api.post("/threads", {
-                    message: prompt,
-                    threadId: currThreadId,
-                    provider: provider
-                });
-                setReply(response.data.reply);
-            }
-        } catch (error) {
-            console.log(error);
+            const response = await api.post("/threads", {
+                message: prompt,
+                threadId: currThreadId,
+                provider: provider
+            });
+            setReply(response.data.reply);
+        } catch (err) {
+            console.log(err);
+            setError(err.response?.data?.error || err.message || "Failed to get a response. Please try again.");
         }
         setLoading(false);
     };
@@ -124,6 +121,10 @@ function ChatWindow() {
                 <div className="loadingContainer">
                     <ScaleLoader color="#6c5ce7" loading={loading} />
                 </div>
+            )}
+
+            {error && (
+                <div className="errorBanner">{error}</div>
             )}
 
             <div className="chatInputContainer">

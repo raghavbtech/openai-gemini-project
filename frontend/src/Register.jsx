@@ -24,7 +24,7 @@ function Register() {
       navigate("/login")
     } catch (err) {
       setLoading(false)
-      setError(err)
+      setError(err.response?.data?.error || err.message || "Registration failed")
     }
   }
 

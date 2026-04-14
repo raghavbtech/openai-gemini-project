@@ -13,14 +13,14 @@ function App(){
       <Routes>
         <Route path="/register" element={<Register/>}/>
         <Route path="/login" element={<Login/>}/>
-        <Route 
-        path="/" 
+        <Route
+        path="/"
         element={
-          // <ProtectedRoute>
-          <ChatGpt/>
-          // </ProtectedRoute>
+          <ProtectedRoute>
+            <ChatGpt/>
+          </ProtectedRoute>
           }
-          /> 
+          />
       </Routes>
     </BrowserRouter>
   );
