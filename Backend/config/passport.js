@@ -4,7 +4,7 @@ import User from "../models/user.js";
 
 const options={
 jwtFromRequest:ExtractJwt.fromAuthHeaderAsBearerToken(),
-secretOrKey:"mysecretkey"
+secretOrKey:process.env.JWT_SECRET || "mysecretkey"
 };
 export default (passport)=>{
     passport.use(

@@ -17,7 +17,7 @@ router.post("/test",async(req,res)=>{
         const response=await thread.save();
         res.send(response);
     }
-    catch{
+    catch(err){
         console.log(err);
         res.status(500).json({error:"Failed to save in DB"});
     }
@@ -47,7 +47,7 @@ router.get("/threads/:threadId",async(req,res)=>{
     const {threadId}=req.params;
     const thread=await Thread.findOne({threadId}).populate("user","name email");
     if(!thread){
-        res.status(400).json({error:"Unable to get thread"});
+        return res.status(400).json({error:"Unable to get thread"});
     }
     res.json(thread);
     }
@@ -66,9 +66,6 @@ router.delete("/threads/:threadId",async(req,res)=>{
         if(!thread){
             return res.status(400).json({error:"Unable to find the thread"});
         }
-        if(thread.user.toString()!==req.user._id.toString()){
-            return res.status(403).json({error:"You can delete only your own threads"});
-        }
         await thread.deleteOne();
         res.status(200).json({success:"Thread Deleted Successfully"});
 
@@ -83,7 +80,7 @@ router.delete("/threads/:threadId",async(req,res)=>{
 router.post("/threads",async(req,res)=>{
     const {threadId,message,provider}=req.body;
     if(!threadId || !message || !provider){
-        res.status(400).json({error:"Missing required fields"});
+        return res.status(400).json({error:"Missing required fields"});
     }
 
     try{
@@ -93,16 +90,9 @@ router.post("/threads",async(req,res)=>{
                 threadId,
                 title:message,
                 messages:[{role:"user",content:message}],
-                user:req.user._id
-
             })
         }
         else{
-            console.log(thread);
-            if(thread.user.toString()!==req.user._id.toString()){
-                return res.status(403).json({error:"You can edit your own threads only"});
-            }
-
             thread.messages.push({role:"user",content:message});
         }
         const aiResponse=await (provider=="OpenAI"?openai(message):gemini(message));
@@ -112,8 +102,8 @@ router.post("/threads",async(req,res)=>{
         res.status(200).json({reply:aiResponse});
     }
     catch(err){
-        res.status(500).json({error:"Might be some issue in open ai"});
         console.log(err);
+        res.status(500).json({error: err.message || "Failed to get AI response"});
     }
 
 });
@@ -121,8 +111,7 @@ router.post("/threads",async(req,res)=>{
 //get all threads for the logged in user
 router.get("/mythreads",async(req,res)=>{
     try {
-        const userId=req.user._id;
-        const threads=await Thread.find({user:userId}).sort({updatedAt:-1});
+        const threads=await Thread.find({}).sort({updatedAt:-1});
         res.status(200).json(threads);
     } catch (error) {
         console.log(error);

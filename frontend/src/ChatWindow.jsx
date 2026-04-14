@@ -21,11 +21,6 @@ function ChatWindow() {
     const userInitial = storedUser.name ? storedUser.name[0].toUpperCase() : "U";
 
     const getReply = async () => {
-        if (!token) {
-            navigate("/login");
-            return;
-        }
-
         setLoading(true);
         setError("");
         setNewChat(false);

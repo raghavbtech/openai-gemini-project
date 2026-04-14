@@ -4,25 +4,26 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import chatRoutes from "./routes/route.js";
 import authRoutes from "./routes/authRoutes.js";
-import passportconfig from "./config/passport.js"
-import passport from 'passport';
 
 
 const app=express();
 
 
 app.use(express.json());
+const allowedOrigins = process.env.CLIENT_URL
+    ? process.env.CLIENT_URL.split(',').map(o => o.trim())
+    : ['http://localhost:5173'];
+
 app.use(cors({
-    origin: process.env.CLIENT_URL || 'https://openai-gemini-project1.onrender.com',
+    origin: (origin, callback) => {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
     credentials: true,
 }));
-
-
-app.use(passport.initialize());
-passportconfig(passport);
-
-app.use("/api/auth",authRoutes);
-app.use("/api",passport.authenticate('jwt',{session:false}),chatRoutes);
 
 
 const connectDB=async()=>{
@@ -32,13 +33,21 @@ const connectDB=async()=>{
         console.log("Connected With Database!");
     } catch (error) {
         console.log("Failed to connect with Db",error);
+        throw error;
     }
 };
 
 app.use(async(req,res,next)=>{
-    await connectDB();
-    next();
+    try {
+        await connectDB();
+        next();
+    } catch (error) {
+        res.status(500).json({error:"Database connection failed"});
+    }
 });
+
+app.use("/api/auth",authRoutes);
+app.use("/api",chatRoutes);
 
 export default app;
 
